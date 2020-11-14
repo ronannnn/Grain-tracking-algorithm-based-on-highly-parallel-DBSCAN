@@ -106,9 +106,9 @@ static void calculate_distances() {
 
   for (int i = 0; i < POINT_NUM; i++) {
     for (int j = i + 1; j < POINT_NUM; j++) {
-      double xdistance = atoms[i].coord[0] - atoms[j].coord[0];
-      double ydistance = atoms[i].coord[1] - atoms[j].coord[1];
-      double zdistance = atoms[i].coord[2] - atoms[j].coord[2];
+      double xdistance = abs(atoms[i].coord[0] - atoms[j].coord[0]);
+      double ydistance = abs(atoms[i].coord[1] - atoms[j].coord[1]);
+      double zdistance = abs(atoms[i].coord[2] - atoms[j].coord[2]);
       if( xdistance > xhalf) xdistance = xlength - xdistance;
       if( ydistance > yhalf) ydistance = ylength - ydistance;
       if( zdistance > zhalf) zdistance = zlength - zdistance;
