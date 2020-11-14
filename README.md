@@ -7,7 +7,7 @@ If the C compiler on your computer is cc (also common is gcc for GNU C compiler)
 ...
 This will create an executable ...
 ## 2. Files
-The following files are included in this folder, in addition to this readme file, readme.md.
+The following files are included in the src folder, in addition to this readme file, readme.md.
 <ul>
   <li>.c:  </li>
   <li>.h: </li>
