@@ -1,5 +1,5 @@
 # USC CSCI 596 Final Project -- Grain tracking based on highly parallel DBSCAN
-This is a readme file of a parallel moleqular dynamics (MD) program. Grain growth or recrystalization processes are simulated with parallel MD. The output data is futher analysed using a highly parallel Density Based Spatial Clustering of Applications with Noise (DBSCAN) technique. Grains could be recognized and tracked simultaneously with the change of temperature in this program.
+This is a readme file of a parallel moleqular dynamics (MD) program. Grain growth or recrystallization processes are simulated with parallel MD. The output data is further analyzed using a highly parallel Density Based Spatial Clustering of Applications with Noise (DBSCAN) technique. Grains could be recognized and tracked simultaneously with the change of temperature in this program.
 ## 0. Prerequisites
 Only needed are C compiler and MPI.
 ## 1. How to compile and run
