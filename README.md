@@ -1,5 +1,14 @@
 #  USC CSCI 596 Final Project -- Grain tracking based on highly parallel DBSCAN
+
+| USCID      | Email            | Name        |
+| ---------- | ---------------- | ----------- |
+| 3757551392 | aoyanlia@usc.edu | Aoyan Liang |
+| 1263842037 | axin@usc.edu     | An Xin      |
+| 5853707250 | ruonanch@usc.edu | Ruonan Chen |
+| 6970452914 | xujiamin@usc.edu | Jiaming Xu  |
+
 This is a readme file of a parallel molecular dynamics (MD) program. The sintering processes of aluminum nitride nanopowders is simulated with parallel MD. The output data is further analyzed using a highly parallel Density Based Spatial Clustering of Applications with Noise (HPDBSCAN) technique. Grains could be recognized and tracked simultaneously during  the sintering process in this program.
+
 ## 0. Prerequisites
 Only needed are C compiler and MPI.
 ## 1. Usage
@@ -64,8 +73,9 @@ Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms.
 Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms. The following figures give the visualization of the system before(left) and after(right) the DBSCAN program. Different colors indicate different grains.</li>
 </ul>
 <div style="text-align:center;">
-<img src="images/before.png" style="width: 50%; height:50%" /><img src="images/after.png" alt="image" style="zoom:50%; margin-left:10%;" />
+<img src="images/before.png" style="width: 40%; height:40%" /><img src="images/after.png" alt="image" style="width: 40%; height:40% margin-left:20%;" />
 </div>
+
 
 
 
