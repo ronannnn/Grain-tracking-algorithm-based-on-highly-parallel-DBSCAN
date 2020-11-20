@@ -1,4 +1,4 @@
-# USC CSCI 596 Final Project -- Grain tracking based on highly parallel DBSCAN
+#  USC CSCI 596 Final Project -- Grain tracking based on highly parallel DBSCAN
 This is a readme file of a parallel molecular dynamics (MD) program. The sintering processes of aluminum nitride nanopowders is simulated with parallel MD. The output data is further analyzed using a highly parallel Density Based Spatial Clustering of Applications with Noise (HPDBSCAN) technique. Grains could be recognized and tracked simultaneously during  the sintering process in this program.
 ## 0. Prerequisites
 Only needed are C compiler and MPI.
@@ -8,9 +8,9 @@ Only needed are C compiler and MPI.
   </li>
   <li><b>DBSCAN</b><br>
   
-  
-  
-  ```
+
+
+  ```C++
   DBSCAN(atoms[], nAtoms, eps, minPts) {
   cid = 1; // current cluster ID
   for (i in [0: nAtoms]) {
@@ -45,10 +45,10 @@ Only needed are C compiler and MPI.
         cid++;
       }
   }
-  }
+  }  
   ```
-  
-  </li>
+
+</li>
   <li><b>Output file</b><br>The output file is in the same format as the input file, but one additional column is added to record the grain id. 
   </li>
   <li><b>Visualization</b><br>The visualization is achieved by OVITO.
@@ -64,14 +64,9 @@ Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms.
   <li><b>Pre-experiment</b><br>
 Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms. The following figures give the visualization of the system before(left) and after(right) the DBSCAN program. Different colors indicate different grains.</li>
 </ul>
-
-
-
-![image](images/before.png)
-![image](https://github.com/AoyanLiang/Grain-tracking/blob/main/After.png)
-
-
-
+<div style="text-align:center;">
+<img src="images/before.png" style="zoom: 50%;" /><img src="images/after.png" alt="image" style="zoom:50%; margin-left:10%;" />
+</div>
 
 
 
@@ -85,7 +80,6 @@ structure to implement our program on a high-performance server cluster. Here ar
 In this model, one process will be chosen to distribute all sub-tasks to slave nodes and
 gather all the running result to relabel all the sub-tasks' results. And then generate outputs.
     </li>
-
  <li><b>Spacial decomposition</b><br>
 In the master node, spatial decomposition will be used to divide the task into several sub-tasks.
 The task number will be the number of cores we use. Considering the message passing across different task, each sub-region
