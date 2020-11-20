@@ -72,10 +72,10 @@ Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms.
   <li><b>Pre-experiment</b><br>
 Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms. The following figures give the visualization of the system before(left) and after(right) the DBSCAN program. Different colors indicate different grains.</li>
 </ul>
-<div style="text-align:center;">
-<img src="images/before.png" style="width: 40%; height:40%" /><img src="images/after.png" alt="image" style="width: 40%; height:40% margin-left:20%;" />
-</div>
 
+<img src="images/before.png" style="width:200; height:200;" />
+
+<img src="images/after.png" style="width:200; height:200;" />
 
 
 
