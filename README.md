@@ -13,6 +13,9 @@ The following files are included in the src folder, in addition to this readme f
   <li>.h: </li>
   <li>??? </li>
 </ul>
+## 2 .files
+
+
 ![image](images/before.png)
 ![image](https://github.com/AoyanLiang/Grain-tracking/blob/main/After.png)
 
