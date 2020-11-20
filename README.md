@@ -9,7 +9,6 @@ Only needed are C compiler and MPI.
   <li><b>DBSCAN</b><br>
   
 
-
   ```C++
   DBSCAN(atoms[], nAtoms, eps, minPts) {
   cid = 1; // current cluster ID
@@ -65,7 +64,7 @@ Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms.
 Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms. The following figures give the visualization of the system before(left) and after(right) the DBSCAN program. Different colors indicate different grains.</li>
 </ul>
 <div style="text-align:center;">
-<img src="images/before.png" style="zoom: 50%;" /><img src="images/after.png" alt="image" style="zoom:50%; margin-left:10%;" />
+<img src="images/before.png" style="width: 50%; height:50%" /><img src="images/after.png" alt="image" style="zoom:50%; margin-left:10%;" />
 </div>
 
 
