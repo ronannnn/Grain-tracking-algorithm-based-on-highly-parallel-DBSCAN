@@ -13,6 +13,6 @@ The following files are included in the src folder, in addition to this readme f
   <li>.h: </li>
   <li>??? </li>
 </ul>
-![image](https://github.com/AoyanLiang/Grain-tracking/blob/main/before.png?raw=true)
+![image](https://raw.githubusercontent.com/AoyanLiang/Grain-tracking/main/before.png)
 ![image](https://github.com/AoyanLiang/Grain-tracking/blob/main/After.png)
 
