@@ -61,8 +61,6 @@ Only needed are C compiler and MPI.
   </li>
   <li><b>Visualization</b><br>The visualization is achieved by OVITO.
   </li>
-  <li><b>Pre-experiment</b><br>
-Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms. The following figures give the visualization of the system before(left) and after(right) the DBSCAN program. Different colors indicate different grains.</li>
 </ul>
 
 
