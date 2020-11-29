@@ -7,6 +7,8 @@
 #include "string.h"
 #include "stdio.h"
 #include "math.h"
+#include "utils.c"
+#include "time.h"
 
 #define MAX_LENGTH_OF_LINE 1024 // max length of each line for file reader
 #define SKIP_LINE 2             // skip line number when reading file
@@ -14,7 +16,7 @@
 #define EPS 2.5                 // predefined radius
 #define POINT_NUM 12800         // total number of points
 
-#define DEBUG 1 // debug mode
+#define DEBUG 0 // debug mode
 
 typedef struct tagAtom {
   int id;
@@ -26,12 +28,7 @@ static char *delim = " "; // one or more space
 
 static Atom atoms[POINT_NUM]; // atom array
 static double dist[POINT_NUM][POINT_NUM];
-
-static char *substring(const char *string, int position, int length) {
-  char *pointer = calloc(length + 1, sizeof(char));
-  for (int i = 0; i < length; i++) pointer[i] = string[i + position];
-  return pointer;
-}
+static char *skipped_lines[SKIP_LINE];
 
 // parse dimension of each atom
 static Atom *parse(char *line, int id) {
@@ -48,10 +45,13 @@ static Atom *parse(char *line, int id) {
 }
 
 static void fetch_data(FILE *stream) {
+  time_t start, end;
+  time(&start);
   char line[MAX_LENGTH_OF_LINE];
-  // skip lines
+  // skip lines, those lines will be copied in the output file
   for (int i = 0; i < SKIP_LINE; i++) {
     fgets(line, MAX_LENGTH_OF_LINE, stream);
+    skipped_lines[i] = substring(line, 0, (int)strlen(line) - 2);
   }
   // read line by line
   for (int i = 0; i < POINT_NUM; i++) {
@@ -63,28 +63,13 @@ static void fetch_data(FILE *stream) {
       i--;
     }
   }
-}
-
-static void print_atoms() {
-  for (int i = 0; i < POINT_NUM; i++) {
-    printf(
-      "id: %d, cluster id: %d\n"
-      "coords: %f, %f, %f\n",
-      atoms[i].id, atoms[i].cluster_id,
-      atoms[i].coord[0], atoms[i].coord[1], atoms[i].coord[2]
-    );
-  }
-}
-
-static void export_atoms() {
-  FILE *output = fopen("atoms.txt", "w");
-  fprintf(output, "%d", POINT_NUM);
-  for (int i = 0; i < POINT_NUM; i++) {
-    fprintf(output, "%f %f %f %d\n", atoms[i].coord[0], atoms[i].coord[1], atoms[i].coord[2], atoms[i].cluster_id);
-  }
+  time(&end);
+  printf("Fetching data: %ld seconds\n", end - start);
 }
 
 static void calculate_distances() {
+  time_t start, end;
+  time(&start);
   double xmax, xmin, ymax, ymin, zmax, zmin;
   // find the box size (man & min for each direction)
   xmax = atoms[0].coord[0];
@@ -111,9 +96,9 @@ static void calculate_distances() {
 
   for (int i = 0; i < POINT_NUM; i++) {
     for (int j = i + 1; j < POINT_NUM; j++) {
-      double xdistance = abs(atoms[i].coord[0] - atoms[j].coord[0]);
-      double ydistance = abs(atoms[i].coord[1] - atoms[j].coord[1]);
-      double zdistance = abs(atoms[i].coord[2] - atoms[j].coord[2]);
+      double xdistance = fabs(atoms[i].coord[0] - atoms[j].coord[0]);
+      double ydistance = fabs(atoms[i].coord[1] - atoms[j].coord[1]);
+      double zdistance = fabs(atoms[i].coord[2] - atoms[j].coord[2]);
       if (xdistance > xhalf) xdistance = xlength - xdistance;
       if (ydistance > yhalf) ydistance = ylength - ydistance;
       if (zdistance > zhalf) zdistance = zlength - zdistance;
@@ -123,6 +108,8 @@ static void calculate_distances() {
       dist[j][i] = distance;
     }
   }
+  time(&end);
+  printf("Distance Calculation: %ld seconds\n", end - start);
 }
 
 /**
@@ -138,13 +125,11 @@ static void get_neighbors(int atom_id, int *neighbors, int *size, int *uncluster
       }
     }
   }
-  /*for (int j = 0; j < *size; j++) {
-    printf("%d, ", neighbors[j] + 1);
-  }
-  printf("\n");*/
 }
 
 static int dbscan() {
+  time_t start, end;
+  time(&start);
   int cid = 1;
   int atom_in_c[POINT_NUM];
   int visited[POINT_NUM] = {0};
@@ -198,12 +183,49 @@ static int dbscan() {
     }
     printf("The number of clusters: %d\n", cid - 1);
   }
+  time(&end);
+  printf("DBSCAN: %ld seconds\n", end - start);
   return cid;
 }
 
+static void print_atoms() {
+  for (int i = 0; i < POINT_NUM; i++) {
+    printf(
+      "[DEBUG] id: %d, cluster id: %d, coords: %f, %f, %f\n",
+      atoms[i].id, atoms[i].cluster_id,
+      atoms[i].coord[0], atoms[i].coord[1], atoms[i].coord[2]
+    );
+  }
+}
+
+static void export_atoms() {
+  time_t start, end;
+  time(&start);
+  FILE *output = fopen("output.txt", "w");
+  for (int i = 0; i < SKIP_LINE; i++) {
+    fprintf(output, "%s\n", skipped_lines[i]);
+  }
+  for (int i = 0; i < POINT_NUM; i++) {
+    fprintf(output, "%f %f %f %d\n", atoms[i].coord[0], atoms[i].coord[1], atoms[i].coord[2], atoms[i].cluster_id);
+  }
+  time(&end);
+  printf("Export Data: %ld seconds\n", end - start);
+}
+
 int main() {
-  fetch_data(fopen("x.txt", "r"));
+  time_t start, end;
+  time(&start);
+  char *filename = "input.txt";
+  FILE *file = fopen(filename, "r");
+  if (file == NULL) {
+    printf("Fail to open file %s\n", filename);
+    return 1;
+  }
+  fetch_data(file);
   calculate_distances();
   dbscan();
+  if (DEBUG) print_atoms();
   export_atoms();
+  time(&end);
+  printf("Total Cost: %ld seconds\n", end - start);
 }
