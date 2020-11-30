@@ -10,7 +10,7 @@
 This is a readme file of a parallel molecular dynamics (MD) program. The sintering processes of aluminum nitride nanopowders is simulated with parallel MD. The output data is further analyzed using a highly parallel Density Based Spatial Clustering of Applications with Noise (HPDBSCAN) technique. Grains could be recognized and tracked simultaneously during  the sintering process in this program.
 
 ## 0. Prerequisites
-Only needed are C compiler and MPI.
+xyz file, C compiler and MPI.
 ## 1. Usage
 <ul>
   <li><b>Data preparation</b><br>Using parallel molecular dynamic Fortran code simulate the sintering process of aluminum nitride nanoceramics. The dumped files were saved in .xyz format, which is used as the input data of the DBSCAN program. The first three columns of the input data should be the position (x,y,z) of each atom. The DBSCAN can read the special position atom and do the calculations.
@@ -61,8 +61,6 @@ Only needed are C compiler and MPI.
   </li>
   <li><b>Visualization</b><br>The visualization is achieved by OVITO.
   </li>
-  <li><b>Pre-experiment</b><br>
-Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms. The following figures give the visualization of the system before(left) and after(right) the DBSCAN program. Different colors indicate different grains.</li>
 </ul>
 
 
@@ -70,12 +68,12 @@ Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms.
 ## 2. Results
 <ul>
   <li><b>Pre-experiment</b><br>
-Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms. The following figures give the visualization of the system before(left) and after(right) the DBSCAN program. Different colors indicate different grains.</li>
+Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms. The following figures give the visualization of the system before (left) and after (right) the DBSCAN program. Different colors indicate different grains.</li>
 </ul>
-<div style="text-align:center;">
-<img src="images/before.png" style="width: 40%; height:40%" /><img src="images/after.png" alt="image" style="width: 40%; height:40% margin-left:20%;" />
-</div>
 
+<img src="images/before.png" style="width:200; height:200;" />
+
+<img src="images/after.png" style="width:200; height:200;" />
 
 
 
