@@ -5,7 +5,7 @@
  */
 
 #include "mpi.h"
-#include "dbscan_pbc.c"
+#include "dbscan_serial.c"
 
 int main(int argc, char *argv[]) {
   int rank, size;
