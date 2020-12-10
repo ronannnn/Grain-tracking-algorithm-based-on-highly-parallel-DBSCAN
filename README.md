@@ -76,6 +76,11 @@ Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms.
 <img src="images/after.png" style="width:200; height:200;" />
 
 
+<img src="images/large%20system_before.png" style="width:200; height:200;" />
+
+<img src="images/expected%20results.png" style="width:200; height:200;" />
+
+
 
 ## 3. MPI Optimization
 Due to the memory usage and the cup processing speed limitation of our single process code,
@@ -97,4 +102,3 @@ will be extended to a larger space. This larger space includes the original spac
 Since we decide to run this method in a relatively small cluster, each cluster will generate a
 labeled result started with 0. Hence, after gathering all the results, the master node will do a relabeling process including the clusters in the boundary.
 </li>
-
