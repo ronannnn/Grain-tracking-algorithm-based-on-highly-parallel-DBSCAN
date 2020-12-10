@@ -84,7 +84,7 @@ Firstly, we tested the DBSCAN program on a small dataset, which has 12800 atoms.
 
 ## 3. MPI Optimization
 Due to the memory usage and the cup processing speed limitation of our single process code,
-this program does not perform well in the large-scale dataset. In the future, we want to introduce MPI/OpenMP
+this program does not perform well in the large-scale dataset. So, we introduce MPI/OpenMP
 structure to implement our program on a high-performance server cluster. Here are some methods to implement this feature.
 
 <ul>
